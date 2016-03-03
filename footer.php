@@ -1,6 +1,12 @@
 <footer>
-  <div class="container">
-    <p>&copy; HackerYou <?php echo date('Y'); ?></p>
+  <div class="wrapper">
+    <p>Copyright <?php echo date('Y'); ?></p>
+ 
+    <?php  wp_nav_menu(array (
+    	'container' => false,
+    	'theme_location' => 'social'
+    	)); ?>
+
   </div>
 </footer>
 

@@ -19,11 +19,13 @@ function theme_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	/* This theme uses wp_nav_menu() in one location.
-	* You can allow clients to create multiple menus by
-  * adding additional menus to the array. */
+	* You can allow clients to create multiple menus by  * adding additional menus to the array. */
 	register_nav_menus( array(
-		'primary' => 'Primary Navigation'
+		'primary' => 'Primary Navigation',
+		'social' => 'Social Navigation'
 	) );
+
+
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -134,7 +136,7 @@ add_filter( 'excerpt_length', 'hackeryou_excerpt_length' );
  * Returns a "Continue Reading" link for excerpts
  */
 function hackeryou_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">Continue reading <span class="meta-nav">&rarr;</span></a>';
+	return ' <a href="'. get_permalink() . '"> READIT <span class="meta-nav">&rarr;</span></a>';
 }
 
 /**
@@ -174,6 +176,15 @@ function hackeryou_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
+
+	$secondWidgetArea = array (
+		'name' => 'Custom widget Area',
+		'id' => 'custom-widget-area',
+		'before_widget' => '<div class="footer-widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4>',
+		'after_title' => '</h4>'
+	);
 
 }
 
@@ -276,3 +287,10 @@ function get_post_parent($post) {
 		return $post->ID;
 	}
 }
+
+// hackeryou_get_thumbnail_url: return current post thumbnail url
+
+function hackeryou_get_thumbnail_url( $post ) {
+	$imageID = get_post_thumbnail_url($post->ID);
+	$imageURL = wp_get_attachment_url($imageID);
+};
